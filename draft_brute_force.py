@@ -39,7 +39,7 @@ actions_sorted = sorted(actions, key=lambda x: x[3], reverse=True)
 # check action will not go over the max spending cap: if yes ignore it;
 # if no: retain this action.
 for action in actions_sorted:
-    if spendings == 500:
+    if spendings == max_spendings:
         break
     elif (spendings + action[1]) > max_spendings:
         continue
