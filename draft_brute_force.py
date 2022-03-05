@@ -31,8 +31,8 @@ for action in actions:
     gain = action[1] * action[2] / 100
     action.append(gain)
 
-# Sort the list of actions per higher gain first
-actions_sorted = sorted(actions, key=lambda x: x[3], reverse=True)
+# Sort the list of actions per highest rate first
+actions_sorted = sorted(actions, key=lambda x: x[2], reverse=True)
 
 # For every action in the sorted list:
 # check total spendings have not reached spending cap: if yes stop the loop;
