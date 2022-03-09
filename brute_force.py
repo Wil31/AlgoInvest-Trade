@@ -4,6 +4,7 @@ import time
 def bruteforce(max_spending, data, selected_actions=[]):
     """
     Brute force algorithm which tries all possible solutions
+    Time complexity: O(N): not efficient for large datasets
     """
     if data:
         # val1 and lst_val1 are the results of bruteforce (max earnings, selected actions),
@@ -27,10 +28,13 @@ def bruteforce(max_spending, data, selected_actions=[]):
     else:
         # Return at last the total profitability,
         # and the list of selected actions and the max amount spent
-        return f"Maximum profitability : \
-            {round(sum([i[1] * i[2] for i in selected_actions]), 2)}", \
-            f"Maximum spent : {sum([i[1] for i in selected_actions])}, " \
-            f"Selected actions : {[i[0] for i in selected_actions]}"
+        max_profit = round(sum([i[1] * i[2] for i in selected_actions]), 2)
+        max_spent = sum([i[1] for i in selected_actions])
+        selected_actions_names = [i[0] for i in selected_actions]
+
+        return f"Maximum profitability : {max_profit}", \
+            f"Maximum spent : {max_spent}, " \
+            f"Selected actions : {selected_actions_names}"
 
 
 def main():
