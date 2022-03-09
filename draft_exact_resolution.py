@@ -7,13 +7,13 @@ def sort_actions(actions):
     return sorted(actions, key=lambda x: x[2], reverse=True)
 
 
-def calculate_spent(actions, list_obj):
+def calculate_spent(actions, selected_actions):
     """
     Returns the total spent for the actual saved list of actions
     """
     spent = 0
     for i in range(len(actions)):
-        spent += actions[i][1] * list_obj[i]
+        spent += actions[i][1] * selected_actions[i]
     return spent
 
 
