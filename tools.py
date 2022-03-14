@@ -8,11 +8,11 @@ def calculate_spent(actions):
     return spent
 
 
-def calculate_gain(actions):
+def calculate_profit(actions):
     """
-    Calculate the total gain for a list of actions
+    Calculate the total profit for a list of actions
     """
-    gain = 0
+    profit = 0
     for i in range(len(actions)):
-        gain += actions[i][1] * actions[i][2]
-    return gain
+        profit += actions[i][1] * actions[i][2]
+    return profit

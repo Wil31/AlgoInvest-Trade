@@ -1,20 +1,30 @@
 import time
 from itertools import combinations
-from tools import calculate_gain, calculate_spent
-from config import ACTIONS, DATASET1, DATASET2, BUDGET
+from tools import calculate_profit, calculate_spent
+from config import ACTIONS, BUDGET
 
 
 def bruteforce(data, max_spending):
     """
-    Brute force algorithm which tries all combinations of actions
+    Brute force algorithm which tries all combinations of actions,
+    and return the maximum profit with the list of selected actions.
+    Time complexity O(2^N) is exponential time, scalability is terrible.
+    Every additional element to the dataset doubles time.
     """
+    # Create a list for the maximum profit and the selected actions
     max_profit = [-1, []]
+
     for i in range(1, len(data)):
+        # Iterate through all combinations of i amount of actions
+        # Create all the combinations for i amount
         combination = combinations(data, i)
         for wallet in combination:
+            # For every wallet in a combination check the total cost is not over the threshold
             if calculate_spent(wallet) <= max_spending:
-                gain = calculate_gain(wallet)
+                # Calculate the profit for actual wallet
+                gain = calculate_profit(wallet)
                 if gain > max_profit[0]:
+                    # If the actual wallet has a better profit than previous, then keep it
                     max_profit[0] = gain
                     max_profit[1] = wallet
     return max_profit
