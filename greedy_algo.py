@@ -8,8 +8,10 @@ def greedy(data, max_spendings):
     and returns the max profit, total cost and list of selected actions.
     It isn't concerned about wether the current best outcome will provide 
     the best overall result. It is a top down approach.
+        ####
+    Where N is the number of actions:
     Time complexity: O(NlogN) because of the sorting required.
-    Space complexity: O(N) no additional memory required
+    Space complexity: O(N), uses "1D" lists.
     """
     actions_selected = []
     spendings = 0
