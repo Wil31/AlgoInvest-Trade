@@ -26,7 +26,11 @@ def convert_csv_to_list(fichier: str) -> list:
     Returns a list of actions from a CSV file
     """
     with open(fichier, newline='') as datafile:
-        actions = list(csv.reader(datafile, delimiter=',', quotechar='|'))[1:]
-    actions = [[a[0], float(a[1]), float(a[2][:-1])/100]
+        # Create a list with the lines of the csv,
+        # and ignore first line (header)
+        actions = list(csv.reader(datafile, delimiter=','))[1:]
+    # Filter out the actions worth 0,
+    # and transform the figures to floats
+    actions = [[a[0], float(a[1]), float(a[2])]
                for a in actions if float(a[1]) > 0]
     return actions

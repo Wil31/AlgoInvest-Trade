@@ -1,5 +1,6 @@
 import time
-from config import ACTIONS, DATASET1, DATASET2, BUDGET
+
+from config import ACTIONS, BUDGET, DATASET1, DATASET2
 
 
 def greedy(data, max_spendings):
@@ -31,7 +32,7 @@ def greedy(data, max_spendings):
             earnings += action[1] * action[2]
             actions_selected.append(action)
 
-    return spendings, earnings, actions_selected
+    return spendings, earnings / 100, actions_selected
 
 
 def main():

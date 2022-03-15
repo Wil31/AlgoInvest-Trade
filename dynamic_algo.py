@@ -1,5 +1,6 @@
 import time
-from config import ACTIONS, DATASET1, BUDGET, DATASET2
+
+from config import ACTIONS, BUDGET, DATASET1, DATASET2
 
 
 def dynamic_algo(data, max_spending):
@@ -16,17 +17,16 @@ def dynamic_algo(data, max_spending):
     1D array instead of 2D matrix.
     """
 
-    # Budget and costs are multiplied per 100 in order to work 
+    # Budget and costs are multiplied per 100 in order to work
     # with integers for the matrix.
     max_spending *= 100
     for line in data:
         line[1] = int(line[1] * 100)
-        line[2] = line[2] * line[1]
-
+        line[2] = line[2] * line[1] / 100  # Calculate the profit per actions
 
     # Initiate a matrix with the spendings as columns and actions as rows.
     matrix = [[0 for x in range(max_spending + 1)]
-               for x in range(len(data) + 1)]
+              for x in range(len(data) + 1)]
 
     # Loop on the rows of actions
     for line in range(1, len(data) + 1):
@@ -59,8 +59,8 @@ def dynamic_algo(data, max_spending):
     while w >= 0 and n >= 0:
         # Take the last action, iterate the list backwards
         a = data[n-1]
-        
-        # If current profit == current value profit 
+
+        # If current profit == current value profit
         #                      - current value profit minus previous spending,
         # then add this action to the list
         if matrix[n][w] == matrix[n-1][w - a[1]] + a[2]:
